@@ -1,0 +1,44 @@
+default_stages: [commit]
+repos:
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.0.2
+    hooks:
+      - id: autoflake
+        exclude: migrations
+        args:
+          [
+            --in-place,
+            --remove-all-unused-imports,
+            --remove-unused-variables,
+            --expand-star-imports,
+            --ignore-init-module-imports,
+            --recursive,
+          ]
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+        exclude: migrations|urls.py
+        args: [--line-length=99]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args:
+          [
+            --profile=black,
+            --py=38,
+            --line-length=99,
+            --skip=migrations,
+            --multi-line=3,
+            --filter-files,
+          ]
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: [
+          --max-line-length=99,
+          --exclude=*/migrations/*,
+          "--ignore=E203,W503",
+        ]

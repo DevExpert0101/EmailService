@@ -1,0 +1,7 @@
+/venv/
+*.pyc
+/.vscode/
+*.sqlite3
+/.env
+/log.txt
+/static

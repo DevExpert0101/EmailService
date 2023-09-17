@@ -1,0 +1,1 @@
+web: gunicorn emailchaser_backend.wsgi
